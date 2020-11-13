@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <unistd.h>
+#include "Navigation.h"
 
 
 #define MAIN_TICK_RATE 1E5 //.2 seconds in usec
@@ -70,7 +71,11 @@ static void tickFunction() {
         currentState = finding_ball_st;
         break;
     case finding_ball_st:
-        currentState = verify_is_ball_st;
+        if(Navigation_finished() == true) {
+            currentState = verify_is_ball_st;
+        } else {
+            currentState = finding_ball_st;
+        }
         break;
     case verify_is_ball_st:
         currentState = trapping_ball_st;
@@ -94,8 +99,10 @@ static void tickFunction() {
         //keep empty, refer to init() function
         break;
     case configuring_sensors_st:
+        Navigation_init();
         break;
     case finding_ball_st:
+        Navigation_tickFunction();
         break;
     case verify_is_ball_st:
         break;

@@ -1,4 +1,5 @@
 #include "Navigation.h"
+#include "QTRSensors.h"
 #include <stdio.h>
 #include <stdbool.h>
 

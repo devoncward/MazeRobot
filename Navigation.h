@@ -3,6 +3,8 @@
 
 #include <stdbool.h>
 
+bool ballFound;
+
 // Init state function for control state machine
 void Navigation_init();
 
@@ -14,6 +16,9 @@ void Navigation_tickFunction();
 
 // Returns true if the Navigation state machine has finished
 bool Navigation_finished();
+
+// Init LED values from sensor
+void Navigation_readSensorReadings();
 
 
 #endif
